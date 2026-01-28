@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plagiarism Detection System</title>
+</head>
+<body>
+    <h2>Plagiarism Detection System</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="files" multiple required>
+        <br><br>
+        <button type="submit">Check Plagiarism</button>
+    </form>
+
+    {% if results %}
+        <h3>Similarity Matrix</h3>
+        <table border="1">
+            {% for row in results %}
+            <tr>
+                {% for val in row %}
+                <td>{{ "%.2f"|format(val*100) }}%</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
